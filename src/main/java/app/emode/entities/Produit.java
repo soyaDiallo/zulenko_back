@@ -1,5 +1,7 @@
 package app.emode.entities;
-import java.sql.Date;
+
+
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +19,6 @@ public class Produit
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_produit;
 	private String designation;
-	private String image_produit;
 	private float prix_produit;
 	private Date date_produit;
 	
@@ -32,12 +33,11 @@ public class Produit
 	
 
 	
-	public Produit(int id_produit, String designation, String image_produit, float prix_produit, Date date_produit,
+	public Produit(int id_produit, String designation, float prix_produit, Date date_produit,
 			Atelier atelier, Collection collection, Client client) {
 		super();
 		this.id_produit = id_produit;
 		this.designation = designation;
-		this.image_produit = image_produit;
 		this.prix_produit = prix_produit;
 		this.date_produit = date_produit;
 		this.atelier = atelier;
@@ -66,13 +66,6 @@ public class Produit
 		this.designation = designation;
 	}
 
-	public String getImage_produit() {
-		return image_produit;
-	}
-
-	public void setImage_produit(String image_produit) {
-		this.image_produit = image_produit;
-	}
 
 	public float getPrix_produit() {
 		return prix_produit;
