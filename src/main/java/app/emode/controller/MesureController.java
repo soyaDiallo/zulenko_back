@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import app.emode.entities.Client;
 import app.emode.entities.Mesure;
-import app.emode.service.ClientService;
+import app.emode.entities.User;
 import app.emode.service.MesureService;
+import app.emode.service.UserService;
 
 @RestController
 @CrossOrigin("*")
@@ -28,7 +28,7 @@ public class MesureController {
 	MesureService service;
 
 	@Autowired
-	ClientService clientService;
+	UserService clientService;
 
 	@GetMapping("/mesures")
 	List<Mesure> getALL() {
@@ -42,7 +42,7 @@ public class MesureController {
 
 	@GetMapping("/mesures/clients/{id}")
 	public Mesure getByClient(@PathVariable int id) {
-		Optional<Client> client = clientService.getById(id);
+		Optional<User> client = clientService.getUserById(id);
 		return service.findByClient(client.get());
 	}
 

@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import app.emode.entities.Client;
 import app.emode.entities.Mesure;
+import app.emode.entities.User;
 import app.emode.repository.MesureRepository;
 import app.emode.repository.MesureRepository;
 
@@ -37,7 +37,7 @@ public class MesureService {
 		return repository.save(Mesure);
 	}
 	
-	public Mesure findByClient(Client client)
+	public Mesure findByClient(User client)
 	{
 		return repository.findByClient(client);
 	}

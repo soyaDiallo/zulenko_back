@@ -28,7 +28,7 @@ public class Atelier {
 	@JoinTable(
 			  joinColumns = @JoinColumn(name = "id_atelier"), 
 			  inverseJoinColumns = @JoinColumn(name = "id_client"))
-	Set<Client> clients;
+	Set<User> clients;
 	
 	
 
@@ -40,7 +40,7 @@ public class Atelier {
 	
 
 	public Atelier(int id_atelier, String nom_atelier, String logo_atelier, String adresse_atelier,
-			float longitude_atelier, float latitude_atelier, Set<Client> clients) {
+			float longitude_atelier, float latitude_atelier, Set<User> clients) {
 		super();
 		this.id_atelier = id_atelier;
 		this.nom_atelier = nom_atelier;
@@ -101,11 +101,11 @@ public class Atelier {
 		this.latitude_atelier = latitude_atelier;
 	}
 
-	public Set<Client> getClients() {
+	public Set<User> getClients() {
 		return clients;
 	}
 
-	public void setClients(Set<Client> clients) {
+	public void setClients(Set<User> clients) {
 		this.clients = clients;
 	}
 	

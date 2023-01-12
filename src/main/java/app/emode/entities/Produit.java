@@ -29,12 +29,12 @@ public class Produit
 	Collection collection;
 	
 	@ManyToOne
-	Client client;
+	User client;
 	
 
 	
 	public Produit(int id_produit, String designation, float prix_produit, Date date_produit,
-			Atelier atelier, Collection collection, Client client) {
+			Atelier atelier, Collection collection, User client) {
 		super();
 		this.id_produit = id_produit;
 		this.designation = designation;
@@ -92,11 +92,11 @@ public class Produit
 	}
 
 
-	public Client getClient() {
+	public User getClient() {
 		return client;
 	}
 
-	public void setClient(Client client) {
+	public void setClient(User client) {
 		this.client = client;
 	}
 

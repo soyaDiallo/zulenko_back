@@ -31,11 +31,11 @@ public class Mesure {
 	private int longueur_genou;
 
 	@OneToOne
-	Client client;
+	User client;
 
 	public Mesure(int id_mesure, int epaule, int poitrine, int ceinture, int fesse, int longueur_pied,
 			int longueur_global, int manche, int manche_courte, int tour_de_masse, int longueur, int cuisse,
-			int poignet, int cou, int tete, int longueur_genou, Client client) {
+			int poignet, int cou, int tete, int longueur_genou, User client) {
 		super();
 		this.id_mesure = id_mesure;
 		this.epaule = epaule;
@@ -189,11 +189,11 @@ public class Mesure {
 		this.longueur_genou = longueur_genou;
 	}
 
-	public Client getClient() {
+	public User getClient() {
 		return client;
 	}
 
-	public void setClient(Client client) {
+	public void setClient(User client) {
 		this.client = client;
 	}
 

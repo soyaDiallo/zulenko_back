@@ -30,19 +30,25 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import app.emode.entities.Atelier;
-import app.emode.entities.Client;
 import app.emode.entities.Collection;
+import app.emode.entities.ERole;
 import app.emode.entities.Image;
 import app.emode.entities.Produit;
+import app.emode.entities.Role;
+import app.emode.entities.User;
+import app.emode.repository.RoleRepository;
 import app.emode.service.AtelierService;
-import app.emode.service.ClientService;
 import app.emode.service.CollectionService;
 import app.emode.service.ImageService;
 import app.emode.service.ProduitService;
+import app.emode.service.UserService;
 
 @RestController
 @CrossOrigin("*")
 public class ProduitController {
+
+	@Autowired
+	RoleRepository roleRepository;
 
 	@Autowired
 	ProduitService service;
@@ -57,10 +63,17 @@ public class ProduitController {
 	CollectionService collectionService;
 
 	@Autowired
-	ClientService clientService;
-
-	@Autowired
 	ImageService imageService;
+	
+	@Autowired
+	UserService userService;
+
+	@GetMapping("/role")
+	public Role getRole() {
+		Role role = new Role();
+		role.setName(ERole.ROLE_TAILLEUR);
+		return roleRepository.save(role);
+	}
 
 	@GetMapping("/produits")
 	List<Produit> getALL() {
@@ -133,7 +146,8 @@ public class ProduitController {
 			Optional<Collection> collection = collectionService.getById(json.getInt("collection"));
 
 			// client
-//			Optional<Client> client = clientService.getById(json.getInt("client"));
+			Optional<User> client = userService.getUserById(json.getInt("client"));
+
 
 			// produit
 			java.util.Date date = new java.util.Date();
@@ -143,7 +157,7 @@ public class ProduitController {
 			p.setDate_produit(date);
 			p.setAtelier(atelier.get());
 			p.setCollection(collection.get());
-//			p.setClient(client.get());
+			p.setClient(client.get());
 
 			service.create(p);
 
