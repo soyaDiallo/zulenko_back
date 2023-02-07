@@ -6,8 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import app.emode.entities.Atelier;
 import app.emode.entities.Collection;
-
+import app.emode.entities.Produit;
 import app.emode.repository.CollectionRepository;
 
 @Service
@@ -34,5 +35,10 @@ public class CollectionService {
 
 	public Collection update(Collection Collection) {
 		return repository.save(Collection);
+	}
+	
+	public List<Collection> findByAtelier(Atelier atelier)
+	{
+		return repository.findByAtelier(atelier);
 	}
 }

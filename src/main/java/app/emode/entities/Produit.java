@@ -19,7 +19,6 @@ public class Produit
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_produit;
 	private String designation;
-	private float prix_produit;
 	private Date date_produit;
 	
 	@ManyToOne
@@ -32,13 +31,13 @@ public class Produit
 	User client;
 	
 
-	
-	public Produit(int id_produit, String designation, float prix_produit, Date date_produit,
-			Atelier atelier, Collection collection, User client) {
+
+
+	public Produit(int id_produit, String designation, Date date_produit, Atelier atelier, Collection collection,
+			User client) {
 		super();
 		this.id_produit = id_produit;
 		this.designation = designation;
-		this.prix_produit = prix_produit;
 		this.date_produit = date_produit;
 		this.atelier = atelier;
 		this.collection = collection;
@@ -66,14 +65,6 @@ public class Produit
 		this.designation = designation;
 	}
 
-
-	public float getPrix_produit() {
-		return prix_produit;
-	}
-
-	public void setPrix_produit(float prix_produit) {
-		this.prix_produit = prix_produit;
-	}
 
 	public Date getDate_produit() {
 		return date_produit;

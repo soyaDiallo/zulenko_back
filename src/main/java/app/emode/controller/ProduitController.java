@@ -113,7 +113,6 @@ public class ProduitController {
 		if (a.isPresent()) {
 			Produit _produit = a.get();
 			_produit.setDesignation(produit.getDesignation());
-			_produit.setPrix_produit(produit.getPrix_produit());
 			return new ResponseEntity<>(service.update(_produit), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -148,16 +147,22 @@ public class ProduitController {
 			// client
 			Optional<User> client = userService.getUserById(json.getInt("client"));
 
-
 			// produit
 			java.util.Date date = new java.util.Date();
 			Produit p = new Produit();
-			p.setPrix_produit(json.getFloat("prix_produit"));
 			p.setDesignation(json.getString("designation").toString());
 			p.setDate_produit(date);
-			p.setAtelier(atelier.get());
-			p.setCollection(collection.get());
-			p.setClient(client.get());
+			if(!atelier.isEmpty()) {
+				p.setAtelier(atelier.get());
+			}
+			if(!collection.isEmpty()) {
+				p.setCollection(collection.get());
+			}
+			
+			if(!client.isEmpty()) {
+				p.setClient(client.get());
+			}
+			
 
 			service.create(p);
 
@@ -188,7 +193,7 @@ public class ProduitController {
 
 			}
 
-			return new ResponseEntity<>(HttpStatus.OK);
+			return new ResponseEntity<>(p,HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
