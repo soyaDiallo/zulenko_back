@@ -17,8 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import app.emode.entities.Atelier;
 import app.emode.entities.Commande;
+import app.emode.entities.Depense;
+import app.emode.entities.Produit;
+import app.emode.entities.User;
 import app.emode.service.AtelierService;
 import app.emode.service.CommandeService;
+import app.emode.service.ProduitService;
+import app.emode.service.UserService;
 
 @RestController
 @CrossOrigin("*")
@@ -27,10 +32,35 @@ public class CommandeController {
 	
 	@Autowired
 	CommandeService service;
+	@Autowired
+	AtelierService atelierService;
 	
+	@Autowired
+	ProduitService produitService;
+	
+	@Autowired
+	UserService userService;
 	@GetMapping("/commandes")
 	List<Commande> getALL() {
 		return service.getAll();
+	}
+	
+	@GetMapping("/commandes/ateliers/{id}")
+	public List<Commande> getByAtelier(@PathVariable int id) {
+		Optional<Atelier> atelier = atelierService.getById(id);
+		return service.findByAtelier(atelier.get());
+	}
+	
+	@GetMapping("/commandes/produits/{id}")
+	public List<Commande> getByProduit(@PathVariable int id) {
+		Optional<Produit> produit = produitService.getById(id);
+		return service.findByProduit(produit.get());
+	}
+	
+	@GetMapping("/commandes/users/{id}")
+	public List<Commande> getByClient(@PathVariable int id) {
+		Optional<User> user = userService.getUserById(id);
+		return service.findByClient(user.get());
 	}
 
 	@GetMapping("/commandes/{id}")
